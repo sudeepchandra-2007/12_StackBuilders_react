@@ -2,6 +2,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import DashboardLayout from "./layouts/DashboardLayout.jsx";
 import AdminDashboard from "./features/admin/AdminDashboard.jsx";
 import AdminConsoleLayout from "./features/admin/AdminConsoleLayout.jsx";
+import HRDashboard from "./features/hr/HRDashboard.jsx";
+import SupervisorWorkspace from "./features/supervisor/SupervisorWorkspace.jsx";
 
 const roles = [
   ["Employee", "/employee"],
@@ -28,6 +30,7 @@ function PlaceholderPage({ role }) {
 function App() {
   return (
     <Routes>
+      <Route path="/supervisor" element={<SupervisorWorkspace />} />
       <Route element={<AdminConsoleLayout />}>
         <Route path="/admin" element={<AdminDashboard />} />
       </Route>
@@ -37,7 +40,15 @@ function App() {
           <Route
             key={path}
             path={path.slice(1)}
-            element={role === "Admin" ? <AdminDashboard /> : <PlaceholderPage role={role} />}
+            element={
+              role === "Admin" ? (
+                <AdminDashboard />
+              ) : role === "HR" ? (
+                <HRDashboard />
+              ) : (
+                <PlaceholderPage role={role} />
+              )
+            }
           />
         ))}
       </Route>
