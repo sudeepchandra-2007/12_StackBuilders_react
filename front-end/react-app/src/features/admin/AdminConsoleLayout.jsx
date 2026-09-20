@@ -1,3 +1,5 @@
+// Admin console layout component
+// Provides navigation sidebar and renders nested administrative route views
 import { Outlet } from "react-router-dom";
 import "./admin-dashboard.css";
 
